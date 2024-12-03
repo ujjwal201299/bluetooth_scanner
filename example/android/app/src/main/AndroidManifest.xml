@@ -1,0 +1,36 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="io.stratosfy.scanner_example">
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application android:icon="@mipmap/ic_launcher" android:label="Stratosfy Scanner" android:enableOnBackInvokedCallback="true">
+        <activity android:name="io.flutter.embedding.android.FlutterActivity" android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode" android:hardwareAccelerated="true" android:exported="true" android:launchMode="singleTop" android:theme="@style/LaunchTheme" android:windowSoftInputMode="adjustResize">
+
+            <meta-data android:name="io.flutter.embedding.android.NormalTheme" android:resource="@style/NormalTheme" />
+
+            <meta-data android:name="io.flutter.embedding.android.SplashScreenDrawable" android:resource="@drawable/launch_background" />
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+
+        <service android:name="io.stratosfy.scanner_example.BackgroundScannerHandler" android:exported="false">
+            <intent-filter>
+                <action android:name="io.stratosfy.stratosfy_scanner.BACKGROUND_SCANNER" />
+            </intent-filter>
+        </service>
+
+        <receiver android:name="io.stratosfy.scanner_example.GeofenceHandler" android:enabled="true" android:exported="true">
+            <intent-filter>
+                <action android:name="io.stratosfy.stratosfy_scanner.geofence" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+            </intent-filter>
+        </receiver>
+
+        <meta-data android:name="com.google.android.geo.API_KEY" android:value="--Your permission key--" />
+
+        <meta-data android:name="flutterEmbedding" android:value="2" />
+    </application>
+</manifest>
